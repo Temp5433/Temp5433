@@ -1,6 +1,4 @@
 INPUT(
-./debug\main.o
-./debug\mainwindow.o
 ./debug\core.o
 ./debug\filemanager.o
 ./debug\filesave.o
@@ -41,7 +39,9 @@ INPUT(
 ./debug\draw.o
 ./debug\streams.o
 ./debug\user.o
-./debug\moc_mainwindow.o
+./debug\memorycollection.o
+./debug\main.o
+./debug\frame.o
 ./debug\moc_core.o
 ./debug\moc_filemanager.o
 ./debug\moc_filesave.o
@@ -81,4 +81,6 @@ INPUT(
 ./debug\moc_draw.o
 ./debug\moc_streams.o
 ./debug\moc_user.o
+./debug\moc_memorycollection.o
+./debug\moc_frame.o
 );

@@ -1,6 +1,4 @@
 INPUT(
-./release\main.o
-./release\mainwindow.o
 ./release\core.o
 ./release\filemanager.o
 ./release\filesave.o
@@ -41,7 +39,9 @@ INPUT(
 ./release\draw.o
 ./release\streams.o
 ./release\user.o
-./release\moc_mainwindow.o
+./release\memorycollection.o
+./release\main.o
+./release\frame.o
 ./release\moc_core.o
 ./release\moc_filemanager.o
 ./release\moc_filesave.o
@@ -81,4 +81,6 @@ INPUT(
 ./release\moc_draw.o
 ./release\moc_streams.o
 ./release\moc_user.o
+./release\moc_memorycollection.o
+./release\moc_frame.o
 );

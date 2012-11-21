@@ -10,8 +10,7 @@ TARGET = 3DGalactic
 TEMPLATE = app
 
 
-SOURCES += main.cpp\
-        mainwindow.cpp \
+SOURCES +=\
     Core/core.cpp \
     Managers/Files/filemanager.cpp \
     Managers/Files/filesave.cpp \
@@ -51,9 +50,12 @@ SOURCES += main.cpp\
     Managers/Mathematics/Creator/creatorplanet.cpp \
     Managers/Draw/draw.cpp \
     Managers/Stream/streams.cpp \
-    Managers/User/user.cpp
+    Managers/User/user.cpp \
+    Managers/Memory/memorycollection.cpp \
+    main.cpp \
+    frame.cpp
 
-HEADERS  += mainwindow.h \
+HEADERS  += \
     Core/core.h \
     Managers/Files/filemanager.h \
     Managers/Files/filesave.h \
@@ -93,6 +95,10 @@ HEADERS  += mainwindow.h \
     Managers/Mathematics/Creator/creatorplanet.h \
     Managers/Draw/draw.h \
     Managers/Stream/streams.h \
-    Managers/User/user.h
+    Managers/User/user.h \
+    Models/ModelsLibrary.h \
+    Managers/Memory/memorycollection.h \
+    frame.h
 
-FORMS    += mainwindow.ui
+FORMS    += \
+    frame.ui

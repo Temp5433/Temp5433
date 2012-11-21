@@ -7,7 +7,9 @@ class File3d : public QObject
 {
     Q_OBJECT
 public:
-    explicit File3d(QObject *parent = 0);
+    explicit File3d(QString path, QObject *parent = 0);
+private:
+    QString path;
 
 signals:
 

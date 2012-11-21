@@ -2,13 +2,16 @@
 #define MEMORYDESTROYER_H
 
 #include <QObject>
+#include "Managers/Memory/memorycollection.h"
 
 class MemoryDestroyer : public QObject
 {
     Q_OBJECT
 public:
-    explicit MemoryDestroyer(QObject *parent = 0);
-
+    explicit MemoryDestroyer(MemoryCollection* collection, QObject *parent = 0);
+    bool DestroyModel(EmptyModel *model);
+private:
+    MemoryCollection *collection;
 signals:
 
 public slots:

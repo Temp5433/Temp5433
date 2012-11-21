@@ -7,8 +7,9 @@ class FileBase : public QObject
 {
     Q_OBJECT
 public:
-    explicit FileBase(QObject *parent = 0);
-
+    explicit FileBase(QString path, QObject *parent = 0);
+private:
+    QString path;
 signals:
 
 public slots:

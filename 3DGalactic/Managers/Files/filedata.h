@@ -7,8 +7,10 @@ class FileData : public QObject
 {
     Q_OBJECT
 public:
-    explicit FileData(QObject *parent = 0);
+    explicit FileData( QString path, QObject *parent = 0);
 
+private:
+    QString path;
 signals:
 
 public slots:

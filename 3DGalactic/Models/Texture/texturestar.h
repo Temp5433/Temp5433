@@ -2,8 +2,9 @@
 #define TEXTURESTAR_H
 
 #include <QObject>
+#include "Models/AbstractModels/emptymodel.h"
 
-class TextureStar : public QObject
+class TextureStar : public EmptyModel
 {
     Q_OBJECT
 public:

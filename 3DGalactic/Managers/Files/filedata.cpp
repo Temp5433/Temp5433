@@ -1,6 +1,7 @@
 #include "filedata.h"
 
-FileData::FileData(QObject *parent) :
+FileData::FileData(QString path,QObject *parent) :
     QObject(parent)
 {
+    this->path = path;
 }

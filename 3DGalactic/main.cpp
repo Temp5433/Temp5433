@@ -1,11 +1,13 @@
 #include <QtGui/QApplication>
-#include "mainwindow.h"
+#include "frame.h"
+#include "Core/core.h"
 
 int main(int argc, char *argv[])
 {
     QApplication a(argc, argv);
-    MainWindow w;
+    Frame w;
     w.show();
-
+    //Тестовый Core сдесь не находиться :)
+    //Он расположен во frame.cpp
     return a.exec();
 }
