@@ -17,6 +17,9 @@ Core::Core(QObject *parent) :
 // онструкторы используютс€ дл€ выделени€ предварительного пам€ти и не более.
 void Core::Configuration()
 {
+    this->modes->connectionToFiles(files);
+    this->modes->connectionToMemory(memories);
+    this->files->start();
     this->memories->start();
 }
 

@@ -4,6 +4,7 @@
 
 MemoryManager::MemoryManager(QObject *parent)
 {
+    qDebug()<<"Create"<<this->metaObject()->className();
     MemoryCollection *collection = new MemoryCollection(this);
     this->adder = new MemoryAdder(collection, this);
     this->destroyer = new MemoryDestroyer(collection, this);
@@ -68,5 +69,6 @@ void MemoryManager::destroy(EmptyModel* model)
 
 void MemoryManager::run()
 {
+    qDebug()<<"run thread: "<< this->metaObject()->className();
     exec();
 }

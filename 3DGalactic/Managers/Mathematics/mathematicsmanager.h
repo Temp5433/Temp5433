@@ -7,6 +7,7 @@
 #include <qtimer.h>
 
 #include "Models/ModelsLibrary.h"
+#include "Managers/Files/filemanager.h"
 
 class MathematicsManager : public QThread
 {
@@ -14,26 +15,26 @@ class MathematicsManager : public QThread
 public:
     explicit MathematicsManager(QObject *parent = 0);
 
+    void connectionToFiles(FileManager *manager);
+
     void askModel(EmptyModel *model);
     EmptyModel* takeModel();
-
-    int getCountOfModeElement(QString *type);
-
+    int getCountOfModesElement(QString *type);
     void changeMode(QString *type);
 
 private:
     void Configuration();
     void run();
 
+    FileManager *files;
+
     QQueue<EmptyModel *> *queAsk;
     QQueue<EmptyModel *> *queAnswer;
     QTimer *timer;
-    void update();
-
 signals:
 
 public slots:
-
+    void update();
 };
 
 #endif // MATHEMATICSMANAGER_H

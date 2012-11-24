@@ -3,6 +3,7 @@
 
 MathematicsManager::MathematicsManager(QObject *parent)
 {
+    qDebug()<<"Create"<<this->metaObject()->className();
     this->queAsk = new QQueue<EmptyModel *>();
     this->queAnswer = new QQueue<EmptyModel *>();
     this->timer = new QTimer(this);
@@ -15,11 +16,19 @@ void MathematicsManager::Configuration()
     this->timer->start(100);
 }
 
+/* Ищите интересную инфу в файлах :)
+*/
+void MathematicsManager::connectionToFiles(FileManager *manager)
+{
+    this->files = manager;
+}
+
 /*class MathematicsManager со всеми надлежащими классами
   я вынес в отдельный поток.
 */
 void MathematicsManager::run()
 {
+    qDebug()<<"run thread: "<< this->metaObject()->className();
     exec();
 }
 
@@ -49,7 +58,7 @@ void MathematicsManager::changeMode(QString *type)
   Этот метод для определения количества
   требуемых для обработки объектов
 */
-int MathematicsManager::getCountOfModeElement(QString *type)
+int MathematicsManager::getCountOfModesElement(QString *type)
 {
 
 }

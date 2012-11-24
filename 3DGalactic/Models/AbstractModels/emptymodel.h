@@ -8,7 +8,7 @@ class EmptyModel : public QObject
     Q_OBJECT
 public:
     explicit EmptyModel(QObject *parent = 0);
-
+    void draw();
 signals:
 
 public slots:
