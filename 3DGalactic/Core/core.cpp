@@ -1,4 +1,6 @@
 #include "core.h"
+#include <qdebug.h>
+
 #include "Models/AbstractModels/emptymodel.h"
 
 Core::Core(QObject *parent) :
@@ -19,6 +21,7 @@ void Core::Configuration()
 {
     this->modes->connectionToFiles(files);
     this->modes->connectionToMemory(memories);
+
     this->files->start();
     this->memories->start();
 }
@@ -40,7 +43,11 @@ void Core::TEST()
     {
         if(((QString)t->metaObject()->className())==test)
             this->memories->askModel(temp);
+        this->files->writeData(t);
+        t = this->files->takeData();
+        if(t!=NULL)
+        qDebug()<<"READ"<<t->metaObject()->className()<<t->getName()<<t->getTest();
     }
     else this->memories->askModel(test);
-
+    this->files->askData(test,new QString("TEST_EMPTY"));
 }

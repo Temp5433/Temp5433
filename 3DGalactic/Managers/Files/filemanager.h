@@ -4,36 +4,50 @@
 #include <QObject>
 #include <qthread.h>
 #include <qtimer.h>
+#include <qqueue.h>
+#include <qpair.h>
 
 #include "filesave.h"
 #include "fileload.h"
 #include "filedata.h"
-#include "filebase.h"
 #include "file3d.h"
+
+#include "Managers/Memory/memorymanager.h"
+
+#include "Models/AbstractModels/emptymodel.h"
 
 class FileManager : public QThread
 {
     Q_OBJECT
 public:
     explicit FileManager(QObject *parent = 0);
-    void Configuration(QString path);
+
+    void setPath(QString path);
+
+    void askData(QString *type, QString *name);
+    EmptyModel* takeData();
+    void writeData(EmptyModel* data);
 private:
+    void Configuration();
+    void run();
+
+    QQueue<QPair< QString *, QString *> *> *queAskData;
+    QQueue<EmptyModel *> *queTakeData;
+    QQueue<EmptyModel *> *queWriteData;
+    QTimer *timer;
 
     FileSave *saver;
     FileLoad *loader;
     FileData *data;
-    FileBase *base;
     File3d *f3d;
 
-    QString path;
-    QTimer timer;
+    MemoryManager *memory;
 
-    void run();
-    void update();
+    QString *path;
 signals:
 
 public slots:
-
+    void update();
 };
 
 #endif // FILEMANAGER_H

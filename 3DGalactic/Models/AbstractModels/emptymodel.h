@@ -9,6 +9,15 @@ class EmptyModel : public QObject
 public:
     explicit EmptyModel(QObject *parent = 0);
     void draw();
+    QString getName();
+    int getTest();
+    QDataStream &operator>>(QDataStream &stream);
+    QDataStream &operator<<(QDataStream &stream);
+private:
+    int test;
+    QString *name;
+
+
 signals:
 
 public slots:

@@ -23,7 +23,6 @@ private:
     void saveLevel();
 
     Draw *drawManager;
-    FileManager *files;
     ModePreparer *preparer;
 signals:
 

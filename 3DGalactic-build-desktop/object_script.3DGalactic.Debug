@@ -4,7 +4,6 @@ INPUT(
 ./debug\filesave.o
 ./debug\fileload.o
 ./debug\filedata.o
-./debug\filebase.o
 ./debug\file3d.o
 ./debug\memorymanager.o
 ./debug\memoryadder.o
@@ -13,7 +12,6 @@ INPUT(
 ./debug\modechanger.o
 ./debug\modepreparer.o
 ./debug\remodemanager.o
-./debug\remodechanger.o
 ./debug\retexturechanger.o
 ./debug\emptymodel.o
 ./debug\phisicalobject.o
@@ -42,12 +40,12 @@ INPUT(
 ./debug\memorycollection.o
 ./debug\main.o
 ./debug\frame.o
+./debug\remodelchanger.o
 ./debug\moc_core.o
 ./debug\moc_filemanager.o
 ./debug\moc_filesave.o
 ./debug\moc_fileload.o
 ./debug\moc_filedata.o
-./debug\moc_filebase.o
 ./debug\moc_file3d.o
 ./debug\moc_memorymanager.o
 ./debug\moc_memoryadder.o
@@ -56,7 +54,6 @@ INPUT(
 ./debug\moc_modechanger.o
 ./debug\moc_modepreparer.o
 ./debug\moc_remodemanager.o
-./debug\moc_remodechanger.o
 ./debug\moc_retexturechanger.o
 ./debug\moc_emptymodel.o
 ./debug\moc_phisicalobject.o
@@ -83,4 +80,5 @@ INPUT(
 ./debug\moc_user.o
 ./debug\moc_memorycollection.o
 ./debug\moc_frame.o
+./debug\moc_remodelchanger.o
 );

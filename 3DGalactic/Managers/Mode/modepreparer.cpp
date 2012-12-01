@@ -29,6 +29,11 @@ void ModePreparer::connectionToMemory(MemoryManager *manager)
     this->remode->connectionToMemory(manager);
 }
 
+void ModePreparer::connectionToFiles(FileManager *manager)
+{
+    this->remode->connectionToFiles(manager);
+}
+
 void ModePreparer::update()
 {
 

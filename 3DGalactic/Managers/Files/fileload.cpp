@@ -3,4 +3,11 @@
 FileLoad::FileLoad(QObject *parent) :
     QObject(parent)
 {
+
 }
+
+void FileLoad::Configuration()
+{
+
+}
+

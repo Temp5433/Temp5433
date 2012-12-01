@@ -4,7 +4,6 @@ INPUT(
 ./release\filesave.o
 ./release\fileload.o
 ./release\filedata.o
-./release\filebase.o
 ./release\file3d.o
 ./release\memorymanager.o
 ./release\memoryadder.o
@@ -13,7 +12,6 @@ INPUT(
 ./release\modechanger.o
 ./release\modepreparer.o
 ./release\remodemanager.o
-./release\remodechanger.o
 ./release\retexturechanger.o
 ./release\emptymodel.o
 ./release\phisicalobject.o
@@ -42,12 +40,12 @@ INPUT(
 ./release\memorycollection.o
 ./release\main.o
 ./release\frame.o
+./release\remodelchanger.o
 ./release\moc_core.o
 ./release\moc_filemanager.o
 ./release\moc_filesave.o
 ./release\moc_fileload.o
 ./release\moc_filedata.o
-./release\moc_filebase.o
 ./release\moc_file3d.o
 ./release\moc_memorymanager.o
 ./release\moc_memoryadder.o
@@ -56,7 +54,6 @@ INPUT(
 ./release\moc_modechanger.o
 ./release\moc_modepreparer.o
 ./release\moc_remodemanager.o
-./release\moc_remodechanger.o
 ./release\moc_retexturechanger.o
 ./release\moc_emptymodel.o
 ./release\moc_phisicalobject.o
@@ -83,4 +80,5 @@ INPUT(
 ./release\moc_user.o
 ./release\moc_memorycollection.o
 ./release\moc_frame.o
+./release\moc_remodelchanger.o
 );

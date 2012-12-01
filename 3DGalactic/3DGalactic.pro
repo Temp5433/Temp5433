@@ -16,7 +16,6 @@ SOURCES +=\
     Managers/Files/filesave.cpp \
     Managers/Files/fileload.cpp \
     Managers/Files/filedata.cpp \
-    Managers/Files/filebase.cpp \
     Managers/Files/file3d.cpp \
     Managers/Memory/memorymanager.cpp \
     Managers/Memory/memoryadder.cpp \
@@ -25,7 +24,6 @@ SOURCES +=\
     Managers/Mode/modechanger.cpp \
     Managers/Mode/modepreparer.cpp \
     Managers/ReMode/remodemanager.cpp \
-    Managers/ReMode/remodechanger.cpp \
     Managers/ReMode/retexturechanger.cpp \
     Models/AbstractModels/emptymodel.cpp \
     Models/AbstractModels/phisicalobject.cpp \
@@ -53,7 +51,8 @@ SOURCES +=\
     Managers/User/user.cpp \
     Managers/Memory/memorycollection.cpp \
     main.cpp \
-    frame.cpp
+    frame.cpp \
+    Managers/ReMode/remodelchanger.cpp
 
 HEADERS  += \
     Core/core.h \
@@ -61,7 +60,6 @@ HEADERS  += \
     Managers/Files/filesave.h \
     Managers/Files/fileload.h \
     Managers/Files/filedata.h \
-    Managers/Files/filebase.h \
     Managers/Files/file3d.h \
     Managers/Memory/memorymanager.h \
     Managers/Memory/memoryadder.h \
@@ -70,7 +68,6 @@ HEADERS  += \
     Managers/Mode/modechanger.h \
     Managers/Mode/modepreparer.h \
     Managers/ReMode/remodemanager.h \
-    Managers/ReMode/remodechanger.h \
     Managers/ReMode/retexturechanger.h \
     Models/AbstractModels/emptymodel.h \
     Models/AbstractModels/phisicalobject.h \
@@ -98,7 +95,8 @@ HEADERS  += \
     Managers/User/user.h \
     Models/ModelsLibrary.h \
     Managers/Memory/memorycollection.h \
-    frame.h
+    frame.h \
+    Managers/ReMode/remodelchanger.h
 
 FORMS    += \
     frame.ui

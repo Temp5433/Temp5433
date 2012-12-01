@@ -3,11 +3,11 @@
 
 #include <QObject>
 
-class ReModeChanger : public QObject
+class ReModelChanger : public QObject
 {
     Q_OBJECT
 public:
-    explicit ReModeChanger(QObject *parent = 0);
+    explicit ReModelChanger(QObject *parent = 0);
 
 signals:
 

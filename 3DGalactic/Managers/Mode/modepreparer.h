@@ -9,6 +9,7 @@
 #include "Managers/Memory/memorymanager.h"
 #include "Managers/ReMode/remodemanager.h"
 #include "Managers/Mathematics/mathematicsmanager.h"
+#include "Managers/Files/filemanager.h"
 
 class ModePreparer : public QThread
 {
@@ -17,7 +18,8 @@ public:
     explicit ModePreparer(QObject *parent = 0);
 
     void connectionToMemory(MemoryManager *manager);
-    QVector<EmptyModel *> getLevel();
+    void connectionToFiles(FileManager *manager);
+    QVector<EmptyModel *> getLevel(FileManager *manager);
 private:
     void Configuration();
 

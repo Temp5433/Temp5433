@@ -22,7 +22,7 @@ void ModeChanger::connectionToMemory(MemoryManager *manager)
 
 void ModeChanger::connectionToFiles(FileManager *manager)
 {
-    this->files = manager;
+    this->preparer->connectionToFiles( manager);
 }
 
 void ModeChanger::changeMode(QString *type)
