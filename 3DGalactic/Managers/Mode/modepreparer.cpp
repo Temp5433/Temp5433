@@ -1,37 +1,49 @@
 #include "modepreparer.h"
 #include <qdebug.h>
+#include <qtimer.h>
+#include <qqueue.h>
+
+#include "Managers/ReMode/remodemanager.h"
+#include "Managers/Mathematics/mathematicsmanager.h"
+
+ReModeManager *remode;
+MathematicsManager *math;
+
+
+QQueue<QString *> askQue();
+
 
 ModePreparer::ModePreparer(QObject *parent)
 {
-    qDebug()<<"Create"<<this->metaObject()->className();
-    this->remode = new ReModeManager();
-    this->math = new MathematicsManager();
-    this->timer = new QTimer(this);
+    qDebug()<<"Create"<<metaObject()->className();
+    remode = new ReModeManager();
+    math = new MathematicsManager();
+    timer = new QTimer(this);
 
-    this->Configuration();
+    Configuration();
 }
 
 void ModePreparer::Configuration()
 {
-    this->math->start();
+    math->start();
     connect(timer,SIGNAL(timeout()),this,SLOT(update()));
     timer->start(100);
 }
 
 void ModePreparer::run()
 {
-    qDebug()<<"run thread: "<< this->metaObject()->className();
+    qDebug()<<"run thread: "<< metaObject()->className();
     exec();
 }
 
 void ModePreparer::connectionToMemory(MemoryManager *manager)
 {
-    this->remode->connectionToMemory(manager);
+    remode->connectionToMemory(manager);
 }
 
 void ModePreparer::connectionToFiles(FileManager *manager)
 {
-    this->remode->connectionToFiles(manager);
+    remode->connectionToFiles(manager);
 }
 
 void ModePreparer::update()

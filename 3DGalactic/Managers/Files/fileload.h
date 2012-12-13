@@ -1,7 +1,6 @@
 #ifndef FILELOAD_H
 #define FILELOAD_H
 
-#include <QObject>
 #include "Managers/Files/filedata.h"
 #include "Managers/Files/file3d.h"
 
@@ -14,8 +13,6 @@ public:
 private:
     void Configuration();
     QString *path;
-
-
 
     FileData *data;
     File3d *f3d;

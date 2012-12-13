@@ -1,8 +1,6 @@
 INPUT(
 ./debug\core.o
 ./debug\filemanager.o
-./debug\filesave.o
-./debug\fileload.o
 ./debug\filedata.o
 ./debug\file3d.o
 ./debug\memorymanager.o
@@ -22,7 +20,6 @@ INPUT(
 ./debug\emptymodelfactory.o
 ./debug\system.o
 ./debug\star.o
-./debug\planet.o
 ./debug\planet3d.o
 ./debug\satallite.o
 ./debug\asteroid.o
@@ -39,12 +36,12 @@ INPUT(
 ./debug\user.o
 ./debug\memorycollection.o
 ./debug\main.o
-./debug\frame.o
 ./debug\remodelchanger.o
+./debug\star3d.o
+./debug\qopenglwidget.o
+./debug\DrawTest.o
 ./debug\moc_core.o
 ./debug\moc_filemanager.o
-./debug\moc_filesave.o
-./debug\moc_fileload.o
 ./debug\moc_filedata.o
 ./debug\moc_file3d.o
 ./debug\moc_memorymanager.o
@@ -64,7 +61,6 @@ INPUT(
 ./debug\moc_emptymodelfactory.o
 ./debug\moc_system.o
 ./debug\moc_star.o
-./debug\moc_planet.o
 ./debug\moc_planet3d.o
 ./debug\moc_satallite.o
 ./debug\moc_asteroid.o
@@ -79,6 +75,8 @@ INPUT(
 ./debug\moc_streams.o
 ./debug\moc_user.o
 ./debug\moc_memorycollection.o
-./debug\moc_frame.o
 ./debug\moc_remodelchanger.o
+./debug\moc_star3d.o
+./debug\moc_qopenglwidget.o
+./debug\qrc_images.o
 );

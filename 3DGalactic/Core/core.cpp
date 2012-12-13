@@ -2,6 +2,15 @@
 #include <qdebug.h>
 
 #include "Models/AbstractModels/emptymodel.h"
+#include "Managers/ManagersLibrary.h"
+
+#include "Managers/Draw/draw.h"
+
+MemoryManager *memories;
+FileManager *files;
+ModeManager *modes;
+User *users;
+Streams *streams;
 
 Core::Core(QObject *parent) :
     QObject(parent)
@@ -19,35 +28,42 @@ Core::Core(QObject *parent) :
 //Конструкторы используются для выделения предварительного памяти и не более.
 void Core::Configuration()
 {
-    this->modes->connectionToFiles(files);
-    this->modes->connectionToMemory(memories);
+    modes->connectionToFiles(files);
+    modes->connectionToMemory(memories);
 
-    this->files->start();
-    this->memories->start();
+    files->connectionToMemory(memories);
+
+    files->start();
+    memories->start();
 }
 
 //Для остановки потока, нужно его завершить.
 void Core::stop()
 {
-    this->memories->exit();
+    memories->exit();
+    files->exit();
 }
+
+
 
 //Тестовый метод
 void Core::TEST()
 {
-    test = new QString("Asteroid");
-    QString *temp = new QString("Fog");
+//    test = new QString("Asteroid");
+//    QString *temp = new QString("Fog");
 
-    EmptyModel *t = this->memories->takeModel();
-    if(t!=NULL)
-    {
-        if(((QString)t->metaObject()->className())==test)
-            this->memories->askModel(temp);
-        this->files->writeData(t);
-        t = this->files->takeData();
-        if(t!=NULL)
-        qDebug()<<"READ"<<t->metaObject()->className()<<t->getName()<<t->getTest();
-    }
-    else this->memories->askModel(test);
-    this->files->askData(test,new QString("TEST_EMPTY"));
+//    EmptyModel *t = this->memories->takeModel();
+//    if(t!=NULL)
+//    {
+//        if(((QString)t->metaObject()->className())==test)
+//            this->memories->askModel(temp);
+//        this->files->writeData(t);
+//        t = this->files->takeData();
+//        if(t!=NULL)
+//        qDebug()<<"READ"<<t->metaObject()->className()<<t->getName()<<t->getTest();
+//    }
+//    else this->memories->askModel(test);
+//    this->files->askData(test,new QString("TEST_EMPTY"));
+
+
 }

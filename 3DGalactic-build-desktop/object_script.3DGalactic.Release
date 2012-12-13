@@ -1,8 +1,6 @@
 INPUT(
 ./release\core.o
 ./release\filemanager.o
-./release\filesave.o
-./release\fileload.o
 ./release\filedata.o
 ./release\file3d.o
 ./release\memorymanager.o
@@ -22,7 +20,6 @@ INPUT(
 ./release\emptymodelfactory.o
 ./release\system.o
 ./release\star.o
-./release\planet.o
 ./release\planet3d.o
 ./release\satallite.o
 ./release\asteroid.o
@@ -39,12 +36,12 @@ INPUT(
 ./release\user.o
 ./release\memorycollection.o
 ./release\main.o
-./release\frame.o
 ./release\remodelchanger.o
+./release\star3d.o
+./release\qopenglwidget.o
+./release\DrawTest.o
 ./release\moc_core.o
 ./release\moc_filemanager.o
-./release\moc_filesave.o
-./release\moc_fileload.o
 ./release\moc_filedata.o
 ./release\moc_file3d.o
 ./release\moc_memorymanager.o
@@ -64,7 +61,6 @@ INPUT(
 ./release\moc_emptymodelfactory.o
 ./release\moc_system.o
 ./release\moc_star.o
-./release\moc_planet.o
 ./release\moc_planet3d.o
 ./release\moc_satallite.o
 ./release\moc_asteroid.o
@@ -79,6 +75,8 @@ INPUT(
 ./release\moc_streams.o
 ./release\moc_user.o
 ./release\moc_memorycollection.o
-./release\moc_frame.o
 ./release\moc_remodelchanger.o
+./release\moc_star3d.o
+./release\moc_qopenglwidget.o
+./release\qrc_images.o
 );

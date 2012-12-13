@@ -5,6 +5,7 @@
 #-------------------------------------------------
 
 QT       += core gui
+QT       += opengl
 
 TARGET = 3DGalactic
 TEMPLATE = app
@@ -13,8 +14,6 @@ TEMPLATE = app
 SOURCES +=\
     Core/core.cpp \
     Managers/Files/filemanager.cpp \
-    Managers/Files/filesave.cpp \
-    Managers/Files/fileload.cpp \
     Managers/Files/filedata.cpp \
     Managers/Files/file3d.cpp \
     Managers/Memory/memorymanager.cpp \
@@ -34,7 +33,6 @@ SOURCES +=\
     Models/Factory/emptymodelfactory.cpp \
     Models/System/system.cpp \
     Models/Star/star.cpp \
-    Models/Planet/planet.cpp \
     Models/Planet/planet3d.cpp \
     Models/Satellite/satallite.cpp \
     Models/Asteroid/asteroid.cpp \
@@ -51,14 +49,14 @@ SOURCES +=\
     Managers/User/user.cpp \
     Managers/Memory/memorycollection.cpp \
     main.cpp \
-    frame.cpp \
-    Managers/ReMode/remodelchanger.cpp
+    Managers/ReMode/remodelchanger.cpp \
+    Models/Star/star3d.cpp \
+    Managers/Draw/qopenglwidget.cpp \
+    Managers/Draw/DrawTest.cpp
 
 HEADERS  += \
     Core/core.h \
     Managers/Files/filemanager.h \
-    Managers/Files/filesave.h \
-    Managers/Files/fileload.h \
     Managers/Files/filedata.h \
     Managers/Files/file3d.h \
     Managers/Memory/memorymanager.h \
@@ -78,7 +76,6 @@ HEADERS  += \
     Models/Factory/emptymodelfactory.h \
     Models/System/system.h \
     Models/Star/star.h \
-    Models/Planet/planet.h \
     Models/Planet/planet3d.h \
     Models/Satellite/satallite.h \
     Models/Asteroid/asteroid.h \
@@ -95,8 +92,11 @@ HEADERS  += \
     Managers/User/user.h \
     Models/ModelsLibrary.h \
     Managers/Memory/memorycollection.h \
-    frame.h \
-    Managers/ReMode/remodelchanger.h
+    Managers/ReMode/remodelchanger.h \
+    Models/Star/star3d.h \
+    Managers/Draw/qopenglwidget.h \
+    Managers/Draw/glext.h \
+    Managers/ManagersLibrary.h
 
-FORMS    += \
-    frame.ui
+RESOURCES += \
+    images.qrc

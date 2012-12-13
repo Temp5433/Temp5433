@@ -1,12 +1,7 @@
 #ifndef REMODEMANAGER_H
 #define REMODEMANAGER_H
 
-#include <QObject>
-
-#include "Managers/Memory/memorymanager.h"
 #include "Managers/Files/filemanager.h"
-#include "Managers/ReMode/remodelchanger.h"
-#include "Managers/ReMode/retexturechanger.h"
 
 class ReModeManager : public QObject
 {
@@ -26,10 +21,9 @@ private:
     void askDataFromFile(QString *data);
     void askMemory(QString *type);
 
-    ReModelChanger *model;
-    ReTextureChanger *texture;
     MemoryManager *memory;
     FileManager *files;
+
 signals:
 
 public slots:

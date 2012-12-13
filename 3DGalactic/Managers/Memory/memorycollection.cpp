@@ -1,10 +1,25 @@
 #include "memorycollection.h"
 
+#include <QVector>
+#include "Models/ModelsLibrary.h"
+
+bool status;
+QVector<QVector<EmptyModel *> *> *freeModel;
+QVector<EmptyModel *> *asteroidsFree;
+QVector<EmptyModel *> *fogsFree;
+QVector<EmptyModel *> *planetsFree;
+QVector<EmptyModel *> *planets3dFree;
+QVector<EmptyModel *> *satellitesFree;
+QVector<EmptyModel *> *splinesFree;
+QVector<EmptyModel *> *starsFree;
+QVector<EmptyModel *> *systemsFree;
+QVector<EmptyModel *> *textureStarsFree;
+
 MemoryCollection::MemoryCollection(QObject *parent) :
     QObject(parent)
 {
     status = false;
-    this->freeModel = new QVector<QVector<EmptyModel *> *>();
+    freeModel = new QVector<QVector<EmptyModel *> *>();
 
     Configuration();
 
@@ -15,39 +30,39 @@ void MemoryCollection::Configuration()
 {
     QVector<EmptyModel *> *temp = new QVector<EmptyModel *>();
     temp->push_back(new Asteroid());
-    this->freeModel->push_back(temp);
+    freeModel->push_back(temp);
 
     temp = new QVector<EmptyModel *>();
     temp->push_back(new Fog());
-    this->freeModel->push_back(temp);
-
-    temp = new QVector<EmptyModel *>();
-    temp->push_back(new Planet());
-    this->freeModel->push_back(temp);
+    freeModel->push_back(temp);
 
     temp = new QVector<EmptyModel *>();
     temp->push_back(new Planet3D());
-    this->freeModel->push_back(temp);
+    freeModel->push_back(temp);
 
     temp = new QVector<EmptyModel *>();
     temp->push_back(new Satallite());
-    this->freeModel->push_back(temp);
+    freeModel->push_back(temp);
 
     temp = new QVector<EmptyModel *>();
     temp->push_back(new Spline());
-    this->freeModel->push_back(temp);
+    freeModel->push_back(temp);
 
     temp = new QVector<EmptyModel *>();
     temp->push_back(new Star());
-    this->freeModel->push_back(temp);
+    freeModel->push_back(temp);
+
+    temp = new QVector<EmptyModel *>();
+    temp->push_back(new Star3d());
+    freeModel->push_back(temp);
 
     temp = new QVector<EmptyModel *>();
     temp->push_back(new System());
-    this->freeModel->push_back(temp);
+    freeModel->push_back(temp);
 
     temp = new QVector<EmptyModel *>();
     temp->push_back(new TextureStar());
-    this->freeModel->push_back(temp);
+    freeModel->push_back(temp);
 }
 
 bool MemoryCollection::getControl()
@@ -68,7 +83,7 @@ void MemoryCollection::setMemorySize(QString type, unsigned int size)
     {
         temp->push_back(getNewModel(type));
     }
-    this->status = true;
+    status = true;
 }
 
 int MemoryCollection::getMemorySize(QString &type)
@@ -84,7 +99,7 @@ int MemoryCollection::getMemorySize(QString &type)
             break;
         }
     }
-    this->status = true;
+    status = true;
     return size;
 }
 
@@ -102,7 +117,7 @@ EmptyModel* MemoryCollection::getFreeModel(QString &type)
             break;
         }
     }
-    this->status = true;
+    status = true;
     return temp;
 }
 
@@ -116,7 +131,7 @@ void MemoryCollection::addFreeModel(EmptyModel *model)
         if(temp==(QString)(*(iter))->first()->metaObject()->className())
             (*(iter))->push_front(model);
     }
-    this->status = true;
+    status = true;
 }
 
 QVector<EmptyModel *>* MemoryCollection::getVectorByModels(QString &type)
@@ -133,8 +148,8 @@ QVector<EmptyModel *>* MemoryCollection::getVectorByModels(QString &type)
 
 EmptyModel* MemoryCollection::getNewModel(QString &type)
 {
-    EmptyModel* temp = this->getNewMemory(type);
-    this->status = true;
+    EmptyModel* temp = getNewMemory(type);
+    status = true;
     return temp;
 }
 
@@ -142,11 +157,11 @@ EmptyModel* MemoryCollection::getNewMemory(QString &type)
 {
     if(type=="Asteroid") return new Asteroid(this);
     if(type=="Fog") return new Fog(this);
-    if(type=="Planet") return new Planet(this);
     if(type=="Planet3D") return new Planet3D(this);
     if(type=="Satallite") return new Satallite(this);
     if(type=="Spline") return new Spline(this);
     if(type=="Star") return new Star(this);
+    if(type=="Star3D") return new Star3d(this);
     if(type=="System") return new System(this);
     if(type=="TextureStar") return new TextureStar(this);
     return NULL;

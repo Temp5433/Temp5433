@@ -1,26 +1,33 @@
 #include "mathematicsmanager.h"
 #include <qdebug.h>
+#include <qqueue.h>
+#include <qtimer.h>
+
+#include "Models/ModelsLibrary.h"
+
+QQueue<EmptyModel *> *queAsk;
+QQueue<EmptyModel *> *queAnswer;
 
 MathematicsManager::MathematicsManager(QObject *parent)
 {
-    qDebug()<<"Create"<<this->metaObject()->className();
-    this->queAsk = new QQueue<EmptyModel *>();
-    this->queAnswer = new QQueue<EmptyModel *>();
-    this->timer = new QTimer(this);
+    qDebug()<<"Create"<<metaObject()->className();
+    queAsk = new QQueue<EmptyModel *>();
+    queAnswer = new QQueue<EmptyModel *>();
+    timer = new QTimer(this);
     Configuration();
 }
 
 void MathematicsManager::Configuration()
 {
     connect(timer,SIGNAL(timeout()),this,SLOT(update()));
-    this->timer->start(100);
+    timer->start(100);
 }
 
 /* Ищите интересную инфу в файлах :)
 */
 void MathematicsManager::connectionToFiles(FileManager *manager)
 {
-    this->files = manager;
+    files = manager;
 }
 
 /*class MathematicsManager со всеми надлежащими классами
@@ -28,7 +35,7 @@ void MathematicsManager::connectionToFiles(FileManager *manager)
 */
 void MathematicsManager::run()
 {
-    qDebug()<<"run thread: "<< this->metaObject()->className();
+    qDebug()<<"run thread: "<< metaObject()->className();
     exec();
 }
 
@@ -67,7 +74,7 @@ int MathematicsManager::getCountOfModesElement(QString *type)
 */
 void MathematicsManager::askModel(EmptyModel *model)
 {
-    this->queAsk->push_back(model);
+    queAsk->push_back(model);
 }
 
 /*Забирание объекта, если он уже подготовлен

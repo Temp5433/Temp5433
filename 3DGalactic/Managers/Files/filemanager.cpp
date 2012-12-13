@@ -1,30 +1,37 @@
 #include "filemanager.h"
 #include <qdebug.h>
 #include <qdir.h>
+#include <qtimer.h>
+#include <qqueue.h>
+#include <qpair.h>
+
+#include "filedata.h"
+#include "file3d.h"
+
+QQueue<QPair< QString *, QString *> *> *queAskData;
+QQueue<EmptyModel *> *queTakeData;
+QQueue<EmptyModel *> *queWriteData;
+
+
+FileData *data;
+File3d *f3d;
+
+
+
 FileManager::FileManager(QObject *parent)
 {
-    qDebug()<<"Create"<<this->metaObject()->className();
-    this->saver = new FileSave(this);
-    this->loader = new FileLoad(this);
+    qDebug()<<"Create"<<metaObject()->className();
 
-    this->data = new FileData(this);
-    this->queAskData = new QQueue<QPair<QString *,QString *> *>();
-    this->queTakeData = new QQueue<EmptyModel *>();
-    this->queWriteData = new QQueue<EmptyModel *>();
-    this->timer = new QTimer(this);
+    data = new FileData(this);
+    queAskData = new QQueue<QPair<QString *,QString *> *>();
+    queTakeData = new QQueue<EmptyModel *>();
+    queWriteData = new QQueue<EmptyModel *>();
+    timer = new QTimer(this);
 
     Configuration();
 }
 
-void FileManager::setPath(QString path)
-{
-    this->path = &path;
-    QString *temp;
 
-    this->data->setPath(path);
-    //temp = new QString(*path+(QString)"/f3d");
-    //this->f3d  = new File3d(temp, this);
-}
 
 void FileManager::Configuration()
 {
@@ -32,15 +39,27 @@ void FileManager::Configuration()
 
     qDebug()<<"Current Path- "<<dir->currentPath();
     QString *temp=new QString(dir->currentPath());
-    this->data->setPath(*temp);
+    data->setPath(*temp);
 
     connect(timer,SIGNAL(timeout()),this,SLOT(update()));
     timer->start(100);
 }
 
+void FileManager::setPath(QString pathToData)
+{
+    path = new QString(pathToData);
+
+    data->setPath(pathToData);
+}
+
+void FileManager::connectionToMemory(MemoryManager *memory)
+{
+    data->connectionToMemory(memory);
+}
+
 void FileManager::run()
 {
-    qDebug()<<"run thread: "<< this->metaObject()->className();
+    qDebug()<<"run thread: "<< metaObject()->className();
     exec();
 }
 
@@ -49,23 +68,27 @@ void FileManager::update()
     if(queAskData->size())
     {
         EmptyModel* temp;
-        temp = this->data->askData(queAskData->first()->first,queAskData->first()->second);
-        this->queTakeData->push_back(temp);
-        qDebug()<<"FILES  READ - find -"<<temp;
-        this->queAskData->pop_front();
+        if(data->isFind()) temp = data->getData();
+        else temp = data->askData(queAskData->first()->first,queAskData->first()->second);
+        if(temp!=NULL || data->isFind()==false)
+        {
+            queTakeData->push_back(temp);
+            qDebug()<<"FILES  READ - find -"<<temp;
+            queAskData->pop_front();
+        }
     }
     else if(queWriteData->size())
     {
         EmptyModel *model = queWriteData->first();
-        bool temp=this->data->writeData(model);
+        bool temp=data->writeData(model);
         qDebug()<<"FILES-write: "<<queWriteData->first()->metaObject()->className()<<" - "<<temp;
-        if(temp)this->queWriteData->pop_front();
+        if(temp)queWriteData->pop_front();
     }
 }
 
 void FileManager::askData(QString *type, QString *name)
 {
-    this->queAskData->push_back(new QPair<QString *, QString *>(type, name));
+    queAskData->push_back(new QPair<QString *, QString *>(type, name));
 }
 
 EmptyModel* FileManager::takeData()
@@ -82,5 +105,5 @@ EmptyModel* FileManager::takeData()
 
 void FileManager::writeData(EmptyModel *model)
 {
-    this->queWriteData->push_back(model);
+    queWriteData->push_back(model);
 }

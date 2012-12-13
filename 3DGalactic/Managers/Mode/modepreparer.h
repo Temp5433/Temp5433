@@ -1,14 +1,6 @@
 #ifndef MODEPREPARER_H
 #define MODEPREPARER_H
 
-#include <QObject>
-#include <qthread.h>
-#include <qtimer.h>
-#include <qqueue.h>
-
-#include "Managers/Memory/memorymanager.h"
-#include "Managers/ReMode/remodemanager.h"
-#include "Managers/Mathematics/mathematicsmanager.h"
 #include "Managers/Files/filemanager.h"
 
 class ModePreparer : public QThread
@@ -22,15 +14,8 @@ public:
     QVector<EmptyModel *> getLevel(FileManager *manager);
 private:
     void Configuration();
-
     void run();
-
-
-    ReModeManager *remode;
-    MathematicsManager *math;
-
     QTimer *timer;
-    QQueue<QString *> askQue();
 signals:
 
 public slots:

@@ -1,14 +1,9 @@
 #ifndef DRAW_H
 #define DRAW_H
 
-#include <QObject>
-#include <qqueue.h>
-#include <qtimer.h>
-#include <qthread.h>
-
-#include <Models/ModelsLibrary.h>
-
-class Draw : public QThread
+#include "Managers/Memory/memorymanager.h"
+#include <qmainwindow.h>
+class Draw : public QMainWindow
 {
     Q_OBJECT
 public:
@@ -18,15 +13,15 @@ public:
     void changeMode(QString *type);
 private:
     void Configuration();
-    void run();
+    void Test();
 
-    QQueue<EmptyModel *> *queDraw;
-    QTimer *timer;
+
+    //QTimer *timer;
 
 signals:
 
 public slots:
-    void update();
+
 };
 
 #endif // DRAW_H

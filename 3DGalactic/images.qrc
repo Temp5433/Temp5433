@@ -1,0 +1,13 @@
+<RCC>
+    <qresource prefix="/stars">
+        <file>texture/stars/medium.gif</file>
+        <file>texture/stars/small.jpg</file>
+        <file>texture/stars/TextureSun.jpg</file>
+    </qresource>
+    <qresource prefix="/planets">
+        <file>texture/planets/Earth.jpg</file>
+        <file>texture/planets/jupiter.jpg</file>
+        <file>texture/planets/klenda.png</file>
+        <file>texture/planets/mars.jpg</file>
+    </qresource>
+</RCC>

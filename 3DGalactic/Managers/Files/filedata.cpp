@@ -2,6 +2,14 @@
 #include "qdir.h"
 #include "qdebug.h"
 
+#include <qfile.h>
+
+bool find;
+MemoryManager *memory;
+QFile  *current;
+QString path;
+
+
 FileData::FileData(QObject *parent) :
     QObject(parent)
 {
@@ -11,24 +19,25 @@ FileData::FileData(QObject *parent) :
 void FileData::Configuration()
 {
     QDir *dir = new QDir();
-    dir->setPath(this->path);
+    dir->setPath(path);
     if(!dir->exists())
     {
-        dir->mkdir(this->path);
-        qDebug()<<"FILE:Create directory - "<<this->path<<"-"<<dir->exists();
+        dir->mkdir(path);
+        qDebug()<<"FILE:Create directory - "<<path<<"-"<<dir->exists();
     }
+    find = false;
 }
 
 void FileData::setPath(QString path)
 {
-    this->path = path+"/saver";
+    path = path+"/saver";
     Configuration();
 }
 
 QFile* FileData::findFile(QString *type, QString name)
 {
     QDir *dir = new QDir();
-    QString path = this->path+"/"+*type;
+    QString path = path+"/"+*type;
     dir->setPath(path);
     name = path + "/" + name+".txt";
     if(!dir->exists())
@@ -43,25 +52,43 @@ QFile* FileData::findFile(QString *type, QString name)
 
 EmptyModel* FileData::askData(QString *type, QString *name)
 {
-    QFile* temp = findFile(type,*name);
-    if(!temp->exists()) return NULL;
-    temp->open(QIODevice::ReadOnly|QIODevice::Text);
-    QDataStream in(temp);
-    EmptyModel *model = new EmptyModel();
-    *model<<in;
-    qDebug()<<"FILES - READ - name is -"<<model->getName();
-    temp->close();
+    current = findFile(type,*name);
+    if(!current->exists())
+    {
+        find = false;
+        return NULL;
+    }
+    find = true;
+
+    current->open(QIODevice::ReadOnly|QIODevice::Text);
+    memory->askModel(type);
+
+    return getData();
+}
+
+EmptyModel* FileData::getData()
+{
+    EmptyModel *model = memory->takeModel();
+    if(model!=NULL)
+    {
+        QDataStream stream(current);
+        *model<<stream;
+        qDebug()<<"FILES - READ - name is -"<<model->getName();
+        current->close();
+        find = false;
+    }
     return model;
 }
 
-//QString* FileData::readData(QFile *file)
-//{
-//    QString temp;
-//    QDataStream in(file);
-//    in >> temp;
-//    qDebug()<<"FILE: Read from -"<<file->fileName()<<" data-"<< temp;
-//    return &temp;
-//}
+void FileData::connectionToMemory(MemoryManager *memory)
+{
+    memory = memory;
+}
+
+bool FileData::isFind()
+{
+    return find;
+}
 
 bool FileData::writeData(EmptyModel *model)
 {

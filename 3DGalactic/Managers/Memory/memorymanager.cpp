@@ -1,19 +1,27 @@
 #include "memorymanager.h"
-#include "Managers/Memory/memorycollection.h"
 #include <qdebug.h>
+#include <QQueue.h>
+
+
+QQueue<QString *> *queAskModel;
+QQueue<EmptyModel *> *queTakeModel;
+QQueue<EmptyModel *> *queDestruction;
+MemoryAdder *adder;
+MemoryDestroyer *destroyer;
+MemoryCollection *collection;
 
 MemoryManager::MemoryManager(QObject *parent)
 {
-    qDebug()<<"Create"<<this->metaObject()->className();
-    MemoryCollection *collection = new MemoryCollection(this);
-    this->adder = new MemoryAdder(collection, this);
-    this->destroyer = new MemoryDestroyer(collection, this);
+    qDebug()<<"Create"<<metaObject()->className();
+    collection = new MemoryCollection(this);
+    adder = new MemoryAdder(collection, this);
+    destroyer = new MemoryDestroyer(collection, this);
 
-    this->queAskModel = new QQueue<QString *>();
-    this->queTakeModel = new QQueue<EmptyModel *>();
-    this->queDestruction = new QQueue<EmptyModel *>();
+    queAskModel = new QQueue<QString *>();
+    queTakeModel = new QQueue<EmptyModel *>();
+    queDestruction = new QQueue<EmptyModel *>();
 
-    this->timer = new QTimer(this);
+    timer = new QTimer(this);
 
     Configuration();
 }
@@ -29,25 +37,25 @@ void MemoryManager::update()
     if(queAskModel->size())
     {
         EmptyModel* temp;
-        temp=this->adder->askModel(*queAskModel->first());
+        temp=adder->askModel(*queAskModel->first());
         if(temp!=NULL)
         {
             qDebug()<<"MEMORY-Ask: "<<queAskModel->first()<<" - "<<temp->metaObject()->className();
             queTakeModel->push_back( temp);
-            this->queAskModel->pop_front();
+            queAskModel->pop_front();
         }
     }
     else if(queDestruction->size())
     {
-        bool temp=this->destroyer->DestroyModel( queDestruction->first());
+        bool temp=destroyer->DestroyModel( queDestruction->first());
         qDebug()<<"MEMORY-Destruct: "<<queDestruction->first()->metaObject()->className()<<" - "<<temp;
-        if(temp)this->queDestruction->pop_front();
+        if(temp)queDestruction->pop_front();
     }
 }
 
 void MemoryManager::askModel(QString *type)
 {
-    this->queAskModel->push_back(type);
+    queAskModel->push_back(type);
 }
 
 EmptyModel* MemoryManager::takeModel()
@@ -64,11 +72,11 @@ EmptyModel* MemoryManager::takeModel()
 
 void MemoryManager::destroy(EmptyModel* model)
 {
-    this->queDestruction->push_back(model);
+    queDestruction->push_back(model);
 }
 
 void MemoryManager::run()
 {
-    qDebug()<<"run thread: "<< this->metaObject()->className();
+    qDebug()<<"run thread: "<< metaObject()->className();
     exec();
 }

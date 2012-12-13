@@ -1,9 +1,9 @@
 #ifndef STAR_H
 #define STAR_H
 
-#include "Models/AbstractModels/spaceobject.h"
+#include "Models/AbstractModels/phisicalobject.h"
 
-class Star : public SpaceObject
+class Star : public PhisicalObject
 {
     Q_OBJECT
 public:

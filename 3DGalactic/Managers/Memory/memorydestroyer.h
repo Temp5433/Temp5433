@@ -1,7 +1,6 @@
 #ifndef MEMORYDESTROYER_H
 #define MEMORYDESTROYER_H
 
-#include <QObject>
 #include "Managers/Memory/memorycollection.h"
 
 class MemoryDestroyer : public QObject

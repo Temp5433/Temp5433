@@ -1,28 +1,35 @@
 #include "modechanger.h"
 
+#include "Managers/Draw/draw.h"
+#include "Managers/Mode/modepreparer.h"
+
+Draw *drawManager;
+ModePreparer *preparer;
+
+
 ModeChanger::ModeChanger(QObject *parent) :
     QObject(parent)
 {
-    this->drawManager = new Draw(this);
-    this->preparer = new ModePreparer(this);
+    drawManager = new Draw(this);
+    preparer = new ModePreparer(this);
 
-    this->Configuration();
+    Configuration();
 }
 
 void ModeChanger::Configuration()
 {
-    this->drawManager->start();
-    this->preparer->start();
+    //drawManager->start();
+    preparer->start();
 }
 
 void ModeChanger::connectionToMemory(MemoryManager *manager)
 {
-    this->preparer->connectionToMemory(manager);
+    preparer->connectionToMemory(manager);
 }
 
 void ModeChanger::connectionToFiles(FileManager *manager)
 {
-    this->preparer->connectionToFiles( manager);
+    preparer->connectionToFiles( manager);
 }
 
 void ModeChanger::changeMode(QString *type)

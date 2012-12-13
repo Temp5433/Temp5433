@@ -1,12 +1,7 @@
 #ifndef MODEMANAGER_H
 #define MODEMANAGER_H
 
-#include <QObject>
-
 #include "Managers/Files/filemanager.h"
-#include "Managers/Memory/memorymanager.h"
-
-#include "Managers/Mode/modechanger.h"
 
 class ModeManager : public QObject
 {
@@ -17,10 +12,12 @@ public:
     void userAction(QString *action);
     void connectionToMemory(MemoryManager *manager);
     void connectionToFiles(FileManager *manager);
+
+    void changeMode(QString *name);
 private:
     void Configuration();
 
-    ModeChanger *changer;
+
 signals:
 
 public slots:

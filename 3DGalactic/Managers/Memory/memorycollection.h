@@ -1,9 +1,7 @@
 #ifndef MEMORYCOLLECTION_H
 #define MEMORYCOLLECTION_H
 
-#include <QObject>
-#include <QVector>
-#include "Models/ModelsLibrary.h"
+#include "Models/AbstractModels/emptymodel.h"
 
 class MemoryCollection : public QObject
 {
@@ -16,7 +14,6 @@ public:
     void setMemorySize(QString type, unsigned int size);
     int getMemorySize(QString &type);
     bool getControl();
-
 private:
     void Configuration();
 
@@ -24,19 +21,6 @@ private:
 
     EmptyModel* getNewModel(QString &type);
     EmptyModel* getNewMemory(QString &type);
-
-    bool status;
-    QVector<QVector<EmptyModel *> *> *freeModel;
-    QVector<EmptyModel *> *asteroidsFree;
-    QVector<EmptyModel *> *fogsFree;
-    QVector<EmptyModel *> *planetsFree;
-    QVector<EmptyModel *> *planets3dFree;
-    QVector<EmptyModel *> *satellitesFree;
-    QVector<EmptyModel *> *splinesFree;
-    QVector<EmptyModel *> *starsFree;
-    QVector<EmptyModel *> *systemsFree;
-    QVector<EmptyModel *> *textureStarsFree;
-
 signals:
 
 public slots:

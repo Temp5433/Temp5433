@@ -1,11 +1,7 @@
 #ifndef MEMORYADDER_H
 #define MEMORYADDER_H
 
-#include <QObject>
-
 #include "Managers/Memory/memorycollection.h"
-#include "Models/AbstractModels/emptymodel.h"
-
 
 class MemoryAdder : public QObject
 {

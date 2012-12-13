@@ -1,12 +1,6 @@
 #ifndef MATHEMATICSMANAGER_H
 #define MATHEMATICSMANAGER_H
 
-#include <QObject>
-#include <qthread.h>
-#include <qqueue.h>
-#include <qtimer.h>
-
-#include "Models/ModelsLibrary.h"
 #include "Managers/Files/filemanager.h"
 
 class MathematicsManager : public QThread
@@ -25,12 +19,8 @@ public:
 private:
     void Configuration();
     void run();
-
-    FileManager *files;
-
-    QQueue<EmptyModel *> *queAsk;
-    QQueue<EmptyModel *> *queAnswer;
     QTimer *timer;
+    FileManager *files;
 signals:
 
 public slots:

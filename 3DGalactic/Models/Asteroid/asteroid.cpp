@@ -1,6 +1,5 @@
 #include "asteroid.h"
 
-Asteroid::Asteroid(QObject *parent) :
-    SpaceObject(parent)
+Asteroid::Asteroid(QObject *parent)
 {
 }

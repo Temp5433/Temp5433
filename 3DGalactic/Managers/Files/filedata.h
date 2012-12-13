@@ -1,11 +1,8 @@
 #ifndef FILEDATA_H
 #define FILEDATA_H
 
-#include <QObject>
-#include <qmap.h>
 #include <qfile.h>
-
-#include "Models/AbstractModels/emptymodel.h"
+#include "Managers/Memory/memorymanager.h"
 
 class FileData : public QObject
 {
@@ -14,17 +11,16 @@ public:
     explicit FileData(QObject *parent = 0);
 
     EmptyModel* askData(QString *type, QString *name);
+    EmptyModel* getData();
     bool writeData(EmptyModel *model);
+    bool isFind();
 
     void setPath(QString path);
+    void connectionToMemory(MemoryManager *memory);
 private:
     void Configuration();
-
     QFile* findFile(QString* type, QString name);
-    //QString* readData(QFile *file);
 
-    //QMap<QString *, QString *> *files;
-    QString path;
 signals:
 
 public slots:
